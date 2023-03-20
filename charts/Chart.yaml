@@ -1,0 +1,6 @@
+version: ${VERSION}
+description: Toolkit for building data processing pipelines.
+name: telegrambotservice
+#sources:
+#- 
+
