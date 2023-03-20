@@ -9,3 +9,6 @@ A chat that offers all kinds of real-time statistics and control commands.
 - We are in https://v2charge.com/ 
 - Please contact us in https://v2charge.com/es/conectar/
 - Community   https://v2charge.com/es/comunidad/
+
+[![Watch the video!](https://img.youtube.com/vi/Y6aZSRe1--Y&ab_channel=V2C/default.jpg)](https://www.youtube.com/watch?v=Y6aZSRe1--Y&ab_channel=V2C)
+
