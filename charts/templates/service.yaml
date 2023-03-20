@@ -1,0 +1,14 @@
+apiVersion: {{.Values.apiversion}}
+kind: Service
+metadata:
+  name: {{.Values.name}}-service
+spec:
+  ports:
+  - port: {{.Values.port}}
+    name: http
+  - port: {{.Values.debugport}}
+    name: debug
+  selector:
+    app: {{.Values.name}}
+  type: NodePort
+

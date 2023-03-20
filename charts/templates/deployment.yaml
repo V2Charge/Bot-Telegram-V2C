@@ -1,0 +1,36 @@
+#Deployment
+apiVersion: apps/{{.Values.apiversion}} # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{.Values.name}}-deployment
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: {{.Values.name}}
+  replicas: {{.Values.replicas}} # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: {{.Values.name}}
+    spec:
+      terminationGracePeriodSeconds: {{.Values.graceperiod}}
+      containers:
+      - name: {{.Values.name}}
+        image: {{.Values.image}}
+        imagePullPolicy: Never
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "5m"
+          limits:
+            memory: "1024Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: {{.Values.port}}
+          name: http
+
