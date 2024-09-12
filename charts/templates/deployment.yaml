@@ -33,4 +33,15 @@ spec:
         ports:
         - containerPort: {{.Values.port}}
           name: http
+        env:
+        - name: BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: telegrambot
+              key: bottoken
+        - name: VF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: telegrambot
+              key: vftoken
 

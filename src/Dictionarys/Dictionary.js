@@ -1,9 +1,9 @@
 const ES = require('./ES');
 const FR = require('./FR');
 const EN = require('./EN');
-const EN = require('./PT');
-const EN = require('./IT');
-const EN = require('./DE');
+const PT = require('./PT');
+const IT = require('./IT');
+const DE = require('./DE');
 
 
 
