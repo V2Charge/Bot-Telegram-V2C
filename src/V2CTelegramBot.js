@@ -14,6 +14,7 @@ class V2CTelegramBot {
 
 
     constructor(telegramToken) {
+        console.log(telegramToken)
         this.bot = new TelegramBot(telegramToken, { polling: true });
         this.setMenuCommands();
     }
