@@ -50,3 +50,5 @@ Thumbs.db
 
 *.tar
 executeGeneraLocal.sh
+
+*.tar.gz

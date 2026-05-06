@@ -1,0 +1,7 @@
+services:
+  telegrambotservice:
+    image: telegrambotservice:latest
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - VF_TOKEN=${VF_TOKEN}

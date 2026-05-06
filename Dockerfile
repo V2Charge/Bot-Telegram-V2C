@@ -1,8 +1,10 @@
-FROM node:16-alpine
+ARG BASE_IMAGE=node:16-alpine
+FROM ${BASE_IMAGE}
+
 RUN mkdir -p /app
 WORKDIR /app
-COPY ./src/ /app/
 COPY package*.json /app/
-RUN npm install
+RUN npm install --omit=dev
+COPY ./src/ /app/
 CMD ["node", "index.js"]
 
