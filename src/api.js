@@ -32,6 +32,25 @@ async function request(client, config) {
 
 const withKey = (apikey) => ({ apikey });
 
+// Cada comando y cada botón necesita el token y el cargador elegido del
+// chat. Se guardan unos minutos en memoria para no consultar el servicio en
+// cada pulsación; se invalidan al guardar otro token o elegir otro cargador.
+const CACHE_TTL = 10 * 60 * 1000;
+const tokens = new Map();
+const userInfos = new Map();
+
+function cached(map, key) {
+  const entry = map.get(key);
+  if (entry && Date.now() - entry.at < CACHE_TTL) return entry.value;
+  map.delete(key);
+  return undefined;
+}
+
+function remember(map, key, value) {
+  if (value) map.set(key, { value, at: Date.now() });
+  return value;
+}
+
 async function data(client, config) {
   const result = await request(client, config);
   return result.ok ? result.data : null;
@@ -45,19 +64,28 @@ module.exports = {
 
   // --- Datos del usuario de Telegram ---
 
-  getToken(chatid) {
-    return data(telegram, { method: 'get', url: '/token', params: { chatbotId: chatid } });
+  async getToken(chatid) {
+    const hit = cached(tokens, chatid);
+    if (hit !== undefined) return hit;
+    return remember(tokens, chatid, await data(telegram, { method: 'get', url: '/token', params: { chatbotId: chatid } }));
   },
 
-  addToken(chatid, tokenkey) {
+  async addToken(chatid, tokenkey) {
+    tokens.delete(chatid);
+    userInfos.delete(chatid);
     return ok(telegram, { method: 'post', url: '/token', params: { chatbotId: chatid }, headers: withKey(tokenkey) });
   },
 
-  getUserInfo(chatid, tokenkey) {
-    return data(telegram, { method: 'get', url: '/info', params: { chatbotId: chatid }, headers: withKey(tokenkey) });
+  async getUserInfo(chatid, tokenkey) {
+    const hit = cached(userInfos, chatid);
+    if (hit !== undefined) return hit;
+    const info = await data(telegram, { method: 'get', url: '/info', params: { chatbotId: chatid }, headers: withKey(tokenkey) });
+    // Solo se guarda si ya hay un cargador elegido
+    return info && info.deviceId ? remember(userInfos, chatid, info) : info;
   },
 
-  updateUserData(chatid, tokenkey, deviceId, tag) {
+  async updateUserData(chatid, tokenkey, deviceId, tag) {
+    userInfos.delete(chatid);
     return ok(telegram, {
       method: 'post',
       url: '/update',
@@ -115,5 +143,6 @@ module.exports = {
   },
 };
 
-// Solo para tests: permite sustituir el adaptador HTTP de axios
+// Solo para tests: permite sustituir el adaptador HTTP de axios y vaciar la caché
 module.exports._clients = { cloud, telegram };
+module.exports._clearCache = () => { tokens.clear(); userInfos.clear(); };
