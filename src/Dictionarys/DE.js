@@ -13,12 +13,14 @@ module.exports = {
 
     //TOKEN VALUES
     "TokenHelp":"Um Ihren Token-Schlüssel zu erhalten, greifen Sie über Ihr Konto auf den Abschnitt VAPI-Schlüssel“ des V2C Cloud-Webportals zu. \n\n Dann klicken Sie auf die Option “Token generieren“ und es wird eine alphanumerische Referenz angezeigt, die Ihren Token-Schlüssel darstellt. \n\n",
-    "TokenOK": "Token erfolgreich eingefügt !Wählen Sie das e-Ladegerät, das Sie konfigurieren möchten. Geben Sie dazu nach dem Befehl /device, gefolgt von einem Leerzeichen, die deviceId des e-Chargers ein, den Sie konfigurieren möchten. Zum Beispiel \n /gerät ABCDEFG",
+    "TokenOK": "✅ Token erfolgreich gespeichert.",
     "TokenKO": "Der Token-Schlüssel ist ungültig.\n Wenn Sie nicht wissen, wie Sie ihn erhalten, geben Sie /token ein.\n Wenn Sie ihn haben, geben Sie ihn nach dem Befehl /token ein. ",
     "PairedList": "Liste der gekoppelten Geräte",
+    "ChooseDevice": "🔌 Wählen Sie die Wallbox, die Sie verwenden möchten:",
+    "NoDevices": "Mit Ihrem V2C-Cloud-Konto sind keine Wallboxen verknüpft.",
 
     //DEVICEID
-    "AddDeviceHelp": "Sie müssen das hinzuzufügende Gerät in folgendem Format angeben: /device <<deviceId>>\n\n Um die Liste der gekoppelten Geräte zu ermitteln, verwenden Sie den Befehl /list.",
+    "AddDeviceHelp": "Wählen Sie zuerst eine Wallbox mit /list (oder geben Sie /device gefolgt von ihrer ID ein, z. B. /device ABC123).",
     "AddDeviceOK": "Das folgende Gerät wurde erfolgreich gekoppelt: ",
     "DeviceActions": "Um den Status des Ladegeräts anzuzeigen, verwenden Sie den Befehl /info\n\n Um den Status oder die Parameter des Ladegeräts zu ändern, verwenden Sie den Befehl /set ",
     "AddDeviceKO": "Das folgende Gerät konnte nicht verknüpft werden: ",

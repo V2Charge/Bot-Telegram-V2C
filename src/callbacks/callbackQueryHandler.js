@@ -7,6 +7,8 @@ const intensityCallback = require("./intensity")
 const houseIntensityCallback = require("./houseIntensity")
 const stadisticsCallback = require("./stadistics")
 const onToken = require('../handlers/onToken');
+const { onDevicePage } = require('../handlers/onList');
+const { selectDevice } = require('../handlers/onDevice');
 const api = require("../api");
 const logger = require("../logger");
 const ScheduleInfoCallback = require("./ScheduleInfo");
@@ -25,10 +27,25 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
     const msg = callbackQuery.message;
     const callbackqueryId = callbackQuery.id
     try {
+        if (category === "noop") {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            return;
+        }
         var token = await api.getToken(msg.chat.id);
         if (!token) {
             bot.answerCallbackQuery(callbackqueryId).catch(() => {});
             onToken.onTokenHandler(bot, msg, [""]);
+            return;
+        }
+        // Botones de la lista de cargadores: no necesitan un cargador elegido
+        if (category.startsWith("devpage:")) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            await onDevicePage(bot, msg, token, Number(category.slice("devpage:".length)) || 0);
+            return;
+        }
+        if (category.startsWith("dev:")) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            await selectDevice(bot, msg.chat.id, token, category.slice("dev:".length));
             return;
         }
         var userInfo = await api.getUserInfo(msg.chat.id, token)

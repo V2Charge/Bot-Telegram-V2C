@@ -13,12 +13,14 @@ module.exports = {
 
     //TOKEN VALUES
     "TokenHelp": "Para obtener tu clave token, accede a la sección “Clave API” del portal web V2C Cloud desde tu cuenta. \n\nA continuación, pulsa sobre la opción “Generar Token” y, se te desplegará una referencia alfanumérica, ese ID será tu clave token. \n\n",
-    "TokenOK": "Token insertado con éxito !\n\nSelecciona el e-Charger que deseas configurar. Para ello, introduce después del comando /device seguido de un espacio, el deviceId del e-Charger que quieras.\n\nPor ejemplo \n/device ABCDEFG",
+    "TokenOK": "✅ Token guardado correctamente.",
     "TokenKO": "¡La clave de token no es válida .\nSi no sabes cómo obtenerla escriba /token.\nEncaso de contar con ella introdúcela después del comando /token",
     "PairedList": "Lista de sus dispositivos emparejados",
+    "ChooseDevice": "🔌 Elige el cargador con el que quieres trabajar:",
+    "NoDevices": "No tienes cargadores vinculados a tu cuenta de V2C Cloud.",
 
     //DEVICEID
-    "AddDeviceHelp": "Debe de indicar un dispositivo añadir con el siguiente formato /device <<deviceId>>\n\nPara conocer la lista de dispositivos emparejados use el comando /list",
+    "AddDeviceHelp": "Primero elige un cargador con /list (o escribe /device seguido de su ID, por ejemplo /device ABC123).",
     "AddDeviceOK": "Se ha vinculado correctamente el siguiente dispositivo: ",
     "DeviceActions": "Para ver el estado del cargador use el comando /info.\n\nPara modificar el estado o parametros del cargador use el comando /set",
     "AddDeviceKO": "No se ha podido vincular el siguiente dispositivo: ",
