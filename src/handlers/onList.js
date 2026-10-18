@@ -1,5 +1,6 @@
 const api = require('../api');
 const onToken = require("./onToken");
+const logger = require("../logger");
 
 
 async function onListHandler(bot, msg) {
@@ -17,7 +18,7 @@ async function onListHandler(bot, msg) {
       }
     }
   } catch (error) {
-    console.log(error);
+    logger.error("list", error);
   }
 }
 

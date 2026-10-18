@@ -8,6 +8,7 @@ const onCallBackQueryHandler = require("./callbacks/callbackQueryHandler");
 const TelegramBot = require('node-telegram-bot-api');
 const { runWithLanguage, LANGUAGES } = require('./Dictionarys/Dictionary')
 const EN = require('./Dictionarys/EN');
+const logger = require('./logger');
 
 class V2CTelegramBot {
 
@@ -65,7 +66,7 @@ class V2CTelegramBot {
                 await this.bot.setMyCommands(V2CTelegramBot.menuCommands(dictionary), { language_code: code });
             }
         } catch (error) {
-            console.error('setMyCommands', error.message);
+            logger.warn('setMyCommands', error.message);
         }
     }
 
@@ -84,7 +85,7 @@ class V2CTelegramBot {
         this.command(/^\/info(?:@\w+)?\s*$/i, (msg) => this.onInfoHandler(msg));
         this.command(/^\/set(?:@\w+)?\s*$/i, (msg) => this.onSetHandler(msg));
         this.bot.on('callback_query', (callbackQuery) => runWithLanguage(callbackQuery, () => this.onCallBackQueryHandler(callbackQuery)));
-        this.bot.on('polling_error', (error) => { console.error('polling_error', error.code, error.message) });
+        this.bot.on('polling_error', (error) => { logger.warn('polling_error', error.code, error.message) });
     }
 }
 

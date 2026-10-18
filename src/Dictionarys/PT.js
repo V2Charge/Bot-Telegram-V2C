@@ -8,6 +8,7 @@ module.exports = {
     "CmdInfo": "Estado e informações do carregador",
     "CmdHelp": "Ajuda",
     "TokenHelpUrl": "https://v2charge.com/how-can-i-get-my-token-id-to-use-the-api-rest-cloud/",
+    "TokenMessageDeleted": "🔒 Apaguei a sua mensagem com o token para que não fique guardada no chat.",
 
 
     //TOKEN VALUES
