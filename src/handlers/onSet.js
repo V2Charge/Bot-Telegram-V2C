@@ -1,6 +1,7 @@
 const api = require('../api');
 const { responseDeviceHelp } = require('./onDevice');
 const onToken = require('./onToken');
+const { setKeyboard } = require('../callbacks/controls');
 
 
 function onUserInfoError(bot, msg) {
@@ -19,33 +20,7 @@ async function onSetHandler(bot, msg) {
     onUserInfoError(bot, msg);
     return;
   }
-  bot.sendMessage(msg.chat.id, languageCode.ChooseInfo, {
-
-    "reply_markup": {
-      "inline_keyboard": [
-        [
-          {
-            text: languageCode.PauseMode,
-            callback_data: "PauseMode",
-          },
-          {
-            text: languageCode.ResumeMode,
-            callback_data: "ResumeMode",
-          },
-        ],
-        [
-          {
-            text: languageCode.LockMode,
-            callback_data: "LockMode",
-          },
-          {
-            text: languageCode.UnLockMode,
-            callback_data: "UnLockMode",
-          },
-        ]
-      ],
-    },
-  });
+  bot.sendMessage(msg.chat.id, languageCode.ChooseInfo, { reply_markup: setKeyboard() });
 }
 
 module.exports = onSetHandler

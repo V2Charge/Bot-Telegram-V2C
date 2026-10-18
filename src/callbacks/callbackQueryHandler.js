@@ -12,6 +12,7 @@ const { selectDevice } = require('../handlers/onDevice');
 const api = require("../api");
 const logger = require("../logger");
 const ScheduleInfoCallback = require("./ScheduleInfo");
+const { handleControls } = require("./controls");
 
 
 function onError(bot, msg) {
@@ -55,6 +56,9 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
             return;
         }
         logger.debug("callback", category);
+        if (await handleControls(bot, callbackqueryId, msg, token, userInfo.deviceId, category)) {
+            return;
+        }
         switch (category) {
             case "LockMode":
                 await lockCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)

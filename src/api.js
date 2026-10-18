@@ -89,6 +89,19 @@ module.exports = {
     return ok(cloud, { method: 'post', url: '/device/startcharge', params: { deviceId }, headers: withKey(token) });
   },
 
+  setIntensity(token, deviceId, amps) {
+    return ok(cloud, { method: 'post', url: '/device/intensity', params: { deviceId, value: String(amps) }, headers: withKey(token) });
+  },
+
+  // 0 = FV + mínima potencia, 1 = solo FV, 2 = máxima potencia
+  setFvMode(token, deviceId, mode) {
+    return ok(cloud, { method: 'post', url: '/device/chargefvmode', params: { deviceId, value: String(mode) }, headers: withKey(token) });
+  },
+
+  setDynamic(token, deviceId, enabled) {
+    return ok(cloud, { method: 'post', url: '/device/dynamic', params: { deviceId, value: enabled ? '1' : '0' }, headers: withKey(token) });
+  },
+
   reported(token, deviceId) {
     return data(cloud, { method: 'get', url: '/device/reported', params: { deviceId }, headers: withKey(token) });
   },
@@ -101,3 +114,6 @@ module.exports = {
     return data(cloud, { method: 'get', url: '/stadistic/device', params: { deviceId }, headers: withKey(token) });
   },
 };
+
+// Solo para tests: permite sustituir el adaptador HTTP de axios
+module.exports._clients = { cloud, telegram };
