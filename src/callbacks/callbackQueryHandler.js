@@ -71,6 +71,9 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
             case "StatusInfo":
                 await statusCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
+            case "StatusRefresh":
+                await statusCallback(bot, callbackqueryId, msg, token, userInfo.deviceId, true)
+                break;
             case "InstensityInfo":
                 await intensityCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;

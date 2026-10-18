@@ -34,6 +34,18 @@ module.exports = {
     "InstensityInfo": "⚡intensity value ⚡",
     "CurrentHousePower": "🏠⚡ Current Consumption ",
     "ScheduleInfo": "⏰ Programming Values ",
+    "PowerLabel": "Power",
+    "EnergyLabel": "Energy",
+    "TimeLabel": "Time",
+    "IntensityLabel": "Current",
+    "HousePowerLabel": "House consumption",
+    "SolarLabel": "Solar production",
+    "UpdatedLabel": "Updated",
+    "Refresh": "🔄 Refresh",
+    "LastSessions": "📊 Latest charging sessions",
+    "Total": "Total",
+    "NoSessions": "There are no charging sessions yet.",
+    "StateUnavailable": "ℹ️ This device doesn't report a charging state.",
 
     //SET
     "PauseMode": "pause",

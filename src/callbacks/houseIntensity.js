@@ -1,35 +1,18 @@
 const api = require("../api");
-
-function onSuccess(bot, callbackqueryId, msg, currentstatecharge) {
-  var currentHousePower = currentstatecharge.house_power;
-  var photovoltaic_on = currentstatecharge.photovoltaic_on;
-  var sun_power = currentstatecharge.sun_power;
-  bot.answerCallbackQuery(callbackqueryId).then(async () => {
-    await bot.sendMessage(msg.chat.id, languageCode.CurrentHousePower)
-
-    if (currentHousePower) {
-      await bot.sendMessage(msg.chat.id, "⚡ " + currentHousePower + " KW ⚡")
-
-      if (String(photovoltaic_on) === "1" && Number(sun_power) > 0) {
-        await bot.sendMessage(msg.chat.id, "☀️🏠 " + sun_power + " KW⚡")
-      }
-    }
-  }
-  );
-}
-
-function onError(bot, callbackqueryId, msg) {
-  bot.answerCallbackQuery(callbackqueryId).then(() => bot.sendMessage(msg.chat.id, languageCode.ErrorOperation));
-}
-
+const { num } = require("../format");
 
 async function houseIntensityCallback(bot, callbackqueryId, msg, token, deviceId) {
-  var currentstatecharge = await api.currentstatecharge(token, deviceId)
-  if (currentstatecharge == null) {
-    onError(bot, callbackqueryId, msg)
+  const current = await api.currentstatecharge(token, deviceId)
+  await bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+  if (current == null) {
+    bot.sendMessage(msg.chat.id, languageCode.ErrorOperation);
     return;
   }
-  onSuccess(bot, callbackqueryId, msg, currentstatecharge);
+  const lines = [languageCode.CurrentHousePower, `⚡ ${num(current.house_power, 2)} kW`];
+  if (String(current.photovoltaic_on) === "1" && Number(current.sun_power) > 0) {
+    lines.push(`☀️ ${languageCode.SolarLabel}: ${num(current.sun_power, 2)} kW`);
+  }
+  await bot.sendMessage(msg.chat.id, lines.join("\n"));
 }
 
 module.exports = houseIntensityCallback

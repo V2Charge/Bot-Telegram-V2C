@@ -35,6 +35,18 @@ module.exports = {
     "InstensityInfo": "⚡Valeur d'intensité ⚡",
     "CurrentHousePower": "🏠⚡ Consommation de courant ",
     "ScheduleInfo": "⏰ Valeurs de programmation ",
+    "PowerLabel": "Puissance",
+    "EnergyLabel": "Énergie",
+    "TimeLabel": "Durée",
+    "IntensityLabel": "Intensité",
+    "HousePowerLabel": "Consommation de la maison",
+    "SolarLabel": "Production solaire",
+    "UpdatedLabel": "Mis à jour",
+    "Refresh": "🔄 Actualiser",
+    "LastSessions": "📊 Dernières recharges",
+    "Total": "Total",
+    "NoSessions": "Aucune recharge n'a encore été enregistrée.",
+    "StateUnavailable": "ℹ️ Cet appareil n'indique pas d'état de recharge.",
     "ChargingInformation" : "🔋Informations de charge🔋",
 
     //SET
