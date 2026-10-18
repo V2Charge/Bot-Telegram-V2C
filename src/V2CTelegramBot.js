@@ -68,14 +68,15 @@ class V2CTelegramBot {
 
     async init() {
         this.setMenuCommands();
-        this.bot.onText(/\/token ?(.+)?/, async (msg, match) => { this.onTokenHandler(msg, match) });
-        this.bot.onText(/\/list/, async (msg) => { this.onListHandler(msg) });
-        this.bot.onText(/\/help/, async (msg) => { this.onHelpHandler(msg) });
-        this.bot.onText(/\/start/, async (msg) => { this.onHelpHandler(msg) });
-        this.bot.onText(/\/device ?(.+)?/, async (msg, match) => { this.onDeviceHandler(msg, match) });
-        this.bot.onText(/\/info/, async (msg) => { this.onInfoHandler(msg) });
-        this.bot.onText(/\/set/, async (msg) => { this.onSetHandler(msg) });
+        this.bot.onText(/^\/token(?:@\w+)?(?:\s+(.+))?$/i, async (msg, match) => { this.onTokenHandler(msg, match) });
+        this.bot.onText(/^\/list(?:@\w+)?\s*$/i, async (msg) => { this.onListHandler(msg) });
+        this.bot.onText(/^\/help(?:@\w+)?\s*$/i, async (msg) => { this.onHelpHandler(msg) });
+        this.bot.onText(/^\/start(?:@\w+)?(?:\s+.*)?$/i, async (msg) => { this.onHelpHandler(msg) });
+        this.bot.onText(/^\/device(?:@\w+)?(?:\s+(.+))?$/i, async (msg, match) => { this.onDeviceHandler(msg, match) });
+        this.bot.onText(/^\/info(?:@\w+)?\s*$/i, async (msg) => { this.onInfoHandler(msg) });
+        this.bot.onText(/^\/set(?:@\w+)?\s*$/i, async (msg) => { this.onSetHandler(msg) });
         this.bot.on('callback_query', (callbackQuery) => { this.onCallBackQueryHandler(callbackQuery) });
+        this.bot.on('polling_error', (error) => { console.error('polling_error', error.code, error.message) });
     }
 }
 

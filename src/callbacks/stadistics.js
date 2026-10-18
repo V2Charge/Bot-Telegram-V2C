@@ -20,25 +20,21 @@ function dateDiff(date1, date2) {
 }
 
 function onSuccess(bot, callbackqueryId, msg, stadistics) {
-  stadistics.forEach(element => {
-    var energy = element.energy;
-    var startTime = element.startChargeDate;
-    var endTime = element.endChargeDate;
-    var StartHour = startTime.slice(11, 16);
-    var Start = startTime.slice(0, 10);
-    date1 = new Date(startTime);
-    date2 = new Date(endTime);
-    diff = dateDiff(date1, date2);
-    var timingCharging = diff.hour + "\th\t" + diff.min + "\tm\t" + diff.sec + "\ts"
-    bot.answerCallbackQuery(callbackqueryId).then(() => {
-      bot.sendMessage(msg.chat.id, languageCode.Start + "\t\t" + Start + "\t\t" + StartHour + "\n"
+  bot.answerCallbackQuery(callbackqueryId).then(async () => {
+    for (const element of stadistics) {
+      const startTime = element.startChargeDate;
+      const endTime = element.endChargeDate;
+      const StartHour = startTime.slice(11, 16);
+      const Start = startTime.slice(0, 10);
+      const diff = dateDiff(new Date(startTime), new Date(endTime));
+      const timingCharging = diff.hour + "\th\t" + diff.min + "\tm\t" + diff.sec + "\ts"
+      await bot.sendMessage(msg.chat.id, languageCode.Start + "\t\t" + Start + "\t\t" + StartHour + "\n"
         + languageCode.TimingCharging + "\t\t" + timingCharging + "\n"
         + languageCode.Energy + "\t\t" + element.energy + "KWh" + "\n"
         + languageCode.Cost + "\t\t" + element.cost + "\t€" + "\n"
         + languageCode.CoCost + "\t\t" + element.coCost + "\tKg/CO2")
-    })
+    }
   });
-
 }
 
 function onError(bot, callbackqueryId, msg) {

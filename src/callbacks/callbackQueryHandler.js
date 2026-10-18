@@ -25,12 +25,14 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
     const callbackqueryId = callbackQuery.id
     try {
         var token = await api.getToken(msg.chat.id);
-        if (token.length == 0) {
+        if (!token) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
             onToken.onTokenHandler(bot, msg, [""]);
             return;
         }
         var userInfo = await api.getUserInfo(msg.chat.id, token)
-        if (userInfo == null || userInfo.deviceId == "") {
+        if (!userInfo || !userInfo.deviceId) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
             onUserInfoError(bot, msg);
             return;
         }
@@ -73,7 +75,8 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
                 break;
         }
     } catch (err) {
-        console.log(err)
+        console.error(err)
+        bot.answerCallbackQuery(callbackqueryId).catch(() => {});
         onError(bot, msg)
     }
 }

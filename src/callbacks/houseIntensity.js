@@ -11,8 +11,8 @@ function onSuccess(bot, callbackqueryId, msg, currentstatecharge) {
     if (currentHousePower) {
       await bot.sendMessage(msg.chat.id, "⚡ " + currentHousePower + " KW ⚡")
 
-      if (photovoltaic_on = "1" && sun_power != "0.00") {
-        await bot.sendMessage(msg.chat.id, "☀️🏠 " + currentHousePower + " KW⚡")
+      if (String(photovoltaic_on) === "1" && Number(sun_power) > 0) {
+        await bot.sendMessage(msg.chat.id, "☀️🏠 " + sun_power + " KW⚡")
       }
     }
   }

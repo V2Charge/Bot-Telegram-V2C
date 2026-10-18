@@ -11,14 +11,14 @@ function onChargingStatus(bot, callbackqueryId, msg, token, deviceId) {
       var power = currentstatecharge.power;
       var energy = currentstatecharge.energy;
       await bot.sendMessage(msg.chat.id, languageCode.ChargingInformation)
-      if (power != "0.00"){
+      if (Number(power) > 0) {
         await bot.sendMessage(msg.chat.id, "⚡ " + power + " KW⚡")
       }
       await bot.sendMessage(msg.chat.id, "⚡🚘 " + energy + " KWh⚡")
-      if (currentHousePower != "0.00"){
+      if (Number(currentHousePower) > 0) {
         await bot.sendMessage(msg.chat.id, languageCode.CurrentHousePower + "\n"+ "⚡ " + currentHousePower + " KW ⚡")
       }
-      if (photovoltaic_on = "1" && sun_power != "0.00") {
+      if (String(photovoltaic_on) === "1" && Number(sun_power) > 0) {
         await bot.sendMessage(msg.chat.id, "☀️🏠 " + sun_power + " KW⚡")
       }
     }
@@ -65,14 +65,18 @@ function onSuccess(bot, callbackqueryId, msg, reported, token, deviceId) {
       });
       return;
     case "1":
-      bot.answerCallbackQuery(callbackqueryId).then(() => bot.sendMessage(msg.chat.id, languageCode.Waiting));
-      if (programed == "1") {
-        bot.sendMessage(msg.chat.id, languageCode.Programed)
-      }
+      bot.answerCallbackQuery(callbackqueryId).then(async () => {
+        await bot.sendMessage(msg.chat.id, languageCode.Waiting)
+        if (programed == "1") {
+          bot.sendMessage(msg.chat.id, languageCode.Programed)
+        }
+      });
       return;
     case "2":
       onChargingStatus(bot, callbackqueryId, msg, token, deviceId);
       return;
+    default:
+      bot.answerCallbackQuery(callbackqueryId).catch(() => {});
   }
 }
 

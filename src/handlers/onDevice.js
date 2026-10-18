@@ -51,11 +51,11 @@ async function onDeviceHandler(bot, msg, match) {
     return;
   }
   var token = await api.getToken(msg.chat.id);
-  if (token.length == 0) {
+  if (!token) {
     onToken.onTokenHandler(bot, msg, [""]);
     return;
   }
-  pairings = await api.getPairings(token)
+  const pairings = await api.getPairings(token)
   if (pairings == null) {
     onErrorDeviceAdd(bot, msg, deviceId);
     return;
@@ -66,7 +66,7 @@ async function onDeviceHandler(bot, msg, match) {
   }
   var devicePaired = getPairing(pairings, deviceId)
   if (devicePaired != null) {
-    if (!addDeviceInformation(msg, token, devicePaired.deviceId, devicePaired.tag)) {
+    if (!(await addDeviceInformation(msg, token, devicePaired.deviceId, devicePaired.tag))) {
       onErrorDeviceAdd(bot, msg, deviceId);
       return;
     }

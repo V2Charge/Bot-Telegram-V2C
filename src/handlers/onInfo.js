@@ -1,5 +1,5 @@
 const api = require('../api');
-const responseDeviceHelp = require('./onDevice');
+const { responseDeviceHelp } = require('./onDevice');
 const onToken = require('./onToken');
 
 
@@ -10,12 +10,12 @@ function onUserInfoError(bot, msg) {
 
 async function onInfoHandler(bot, msg) {
   var token = await api.getToken(msg.chat.id);
-  if (token.length == 0) {
+  if (!token) {
     onToken.onTokenHandler(bot, msg, [""]);
     return;
   }
   var userInfo = await api.getUserInfo(msg.chat.id, token)
-  if (userInfo == null || userInfo.deviceId == "") {
+  if (!userInfo || !userInfo.deviceId) {
     onUserInfoError(bot, msg);
     return;
   }

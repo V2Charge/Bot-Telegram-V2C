@@ -40,20 +40,20 @@ function onSuccess(bot, callbackqueryId, msg, scheduleInfo) {
         var minuteend_2 = scheduleInfo.minuteend_01;
         var hour_end_2 = scheduleInfo.hourend_01;
         
-        var daysofweek_2 = scheduleInfo.daysofweek_01;
-        var daysofweek_1 = scheduleInfo.daysofweek_00;
+        var daysofweek_2 = String(scheduleInfo.daysofweek_01);
+        var daysofweek_1 = String(scheduleInfo.daysofweek_00);
         var daysOne = "";
         var daysTwo = "";
 
-        if (min_start_1.length < 2) { min_start_1 = "0" + scheduleInfo.minutestart_00; } 
-        if (hour_start_1.length < 2) { hour_start_1 = "0" + scheduleInfo.hourstart_00; }
-        if (minuteend_1.length < 2) { minuteend_1 = "0" + scheduleInfo.minuteend_00; }
-        if (hour_end_1.length < 2) { hour_end_1 = "0" + scheduleInfo.hourend_00; }
+        min_start_1 = String(min_start_1).padStart(2, "0"); 
+        hour_start_1 = String(hour_start_1).padStart(2, "0");
+        minuteend_1 = String(minuteend_1).padStart(2, "0");
+        hour_end_1 = String(hour_end_1).padStart(2, "0");
         
-        if (min_start_2.length < 2) { min_start_2 = "0" + scheduleInfo.minutestart_01; }
-        if (hour_start_2.length < 2) { hour_start_2 = "0" + scheduleInfo.hourstart_01; } 
-        if (minuteend_2.length < 2) { minuteend_2 = "0" + scheduleInfo.minuteend_01; } 
-        if (hour_end_2.length < 2) { hour_end_2 = "0" + scheduleInfo.hourend_01; }
+        min_start_2 = String(min_start_2).padStart(2, "0");
+        hour_start_2 = String(hour_start_2).padStart(2, "0"); 
+        minuteend_2 = String(minuteend_2).padStart(2, "0"); 
+        hour_end_2 = String(hour_end_2).padStart(2, "0");
        
         //Temporizador 1:
         if (daysofweek_1 != "8") {
