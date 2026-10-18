@@ -2,7 +2,7 @@ const api = require("../api");
 
 
 function responseTokenHelp(bot, msg) {
-  bot.sendMessage(msg.chat.id, languageCode.TokenHelp + "https://v2charge.com/es/como-obtener-mi-identificador-token-para-usar-la-api-rest-cloud/");
+  bot.sendMessage(msg.chat.id, languageCode.TokenHelp + languageCode.TokenHelpUrl);
 }
 
 async function checkToken(msg, token) {

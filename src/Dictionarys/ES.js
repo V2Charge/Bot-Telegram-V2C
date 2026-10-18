@@ -1,5 +1,15 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "Introduce tu token de V2C Cloud",
+    "CmdList": "Lista tus cargadores",
+    "CmdDevice": "Elige el cargador con el que trabajar",
+    "CmdSet": "Controla el cargador",
+    "CmdInfo": "Estado e información del cargador",
+    "CmdHelp": "Ayuda",
+    "TokenHelpUrl": "https://v2charge.com/es/como-obtener-mi-identificador-token-para-usar-la-api-rest-cloud/",
+
+
     //TOKEN VALUES
     "TokenHelp": "Para obtener tu clave token, accede a la sección “Clave API” del portal web V2C Cloud desde tu cuenta. \n\nA continuación, pulsa sobre la opción “Generar Token” y, se te desplegará una referencia alfanumérica, ese ID será tu clave token. \n\n",
     "TokenOK": "Token insertado con éxito !\n\nSelecciona el e-Charger que deseas configurar. Para ello, introduce después del comando /device seguido de un espacio, el deviceId del e-Charger que quieras.\n\nPor ejemplo \n/device ABCDEFG",

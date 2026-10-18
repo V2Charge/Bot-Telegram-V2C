@@ -1,5 +1,15 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "V2C-Cloud-Token eingeben",
+    "CmdList": "Wallboxen auflisten",
+    "CmdDevice": "Wallbox auswählen",
+    "CmdSet": "Wallbox steuern",
+    "CmdInfo": "Status und Infos der Wallbox",
+    "CmdHelp": "Hilfe",
+    "TokenHelpUrl": "https://v2charge.com/de/wie-erhalte-ich-meine-token-id-fuer-die-nutzung-der-rest-cloud-api/",
+
+
     //TOKEN VALUES
     "TokenHelp":"Um Ihren Token-Schlüssel zu erhalten, greifen Sie über Ihr Konto auf den Abschnitt VAPI-Schlüssel“ des V2C Cloud-Webportals zu. \n\n Dann klicken Sie auf die Option “Token generieren“ und es wird eine alphanumerische Referenz angezeigt, die Ihren Token-Schlüssel darstellt. \n\n",
     "TokenOK": "Token erfolgreich eingefügt !Wählen Sie das e-Ladegerät, das Sie konfigurieren möchten. Geben Sie dazu nach dem Befehl /device, gefolgt von einem Leerzeichen, die deviceId des e-Chargers ein, den Sie konfigurieren möchten. Zum Beispiel \n /gerät ABCDEFG",

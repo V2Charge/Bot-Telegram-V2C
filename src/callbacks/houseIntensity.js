@@ -1,5 +1,4 @@
 const api = require("../api");
-const getLanguage = require("../Dictionarys/Dictionary");
 
 function onSuccess(bot, callbackqueryId, msg, currentstatecharge) {
   var currentHousePower = currentstatecharge.house_power;

@@ -1,5 +1,15 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "Saisir votre token V2C Cloud",
+    "CmdList": "Lister vos chargeurs",
+    "CmdDevice": "Choisir le chargeur à utiliser",
+    "CmdSet": "Contrôler le chargeur",
+    "CmdInfo": "État et informations du chargeur",
+    "CmdHelp": "Aide",
+    "TokenHelpUrl": "https://v2charge.com/fr/comment-puis-je-avoir-mon-identifiant-token-pour-utiliser-l-api-rest-cloud/",
+
+
     //TOKEN VALUES
     "TokenHelp": "Pour obtenir votre clé de jeton, rendez-vous dans la rubrique “Clave API” du portail web V2C Cloud depuis votre compte. \n\nEnsuite, cliquez sur l'option “Generar Token” et, une référence alphanumérique s'affichera, cet ID sera votre clé de jeton. \n\n",
 
