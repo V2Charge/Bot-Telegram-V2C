@@ -6,10 +6,13 @@ Disponible en Telegram como `@v2charge_bot`.
 
 ## Funcionalidades
 
-- Estado del cargador en tiempo real
-- Estadísticas de carga
-- Comandos de control: pausar, reanudar, bloquear, desbloquear
-- Soporte multiidioma (ES, EN, DE, FR, IT, PT)
+- `/list`: elegir el cargador con botones (paginado)
+- `/info`: estado actual en un solo mensaje con botón Actualizar, consumo, intensidad, programación y últimas cargas
+- `/set`: pausar, reanudar, habilitar, deshabilitar, intensidad (6-32 A), modo solar y control dinámico
+- Soporte multiidioma (ES, EN, DE, FR, IT, PT), también en el menú de comandos
+- El mensaje con el token se borra del chat al recibirlo
+
+La API pública de V2C Cloud tiene un límite de 1000 llamadas diarias por token, así que el bot evita llamadas innecesarias (caché breve del token, del cargador elegido y de la lista de cargadores).
 
 ## Despliegue
 
@@ -28,6 +31,23 @@ Copiar `.env.example` a `.env` y rellenar los valores:
 ```
 BOT_TOKEN=    # Token del bot de Telegram (BotFather)
 VF_TOKEN=     # Token de la API de V2C Cloud
+```
+
+Opcionales:
+
+```
+LOG_LEVEL=info              # error | warn | info | debug
+BOT_TIMEZONE=Europe/Madrid  # zona horaria de las horas que muestra el bot
+```
+
+## Desarrollo local
+
+Requiere Node 22 o superior. Usa un bot de pruebas de @BotFather, nunca el token de producción (dos procesos leyendo el mismo bot se interrumpen entre sí).
+
+```sh
+npm ci
+npm run dev   # lee .env y reinicia al guardar
+npm test
 ```
 
 ### Construir y exportar imagen
