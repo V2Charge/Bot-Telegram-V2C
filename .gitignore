@@ -52,3 +52,6 @@ Thumbs.db
 executeGeneraLocal.sh
 
 *.tar.gz
+
+# Environment
+.env

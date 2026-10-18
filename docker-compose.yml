@@ -5,3 +5,8 @@ services:
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - VF_TOKEN=${VF_TOKEN}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

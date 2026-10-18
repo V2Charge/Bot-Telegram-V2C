@@ -1,6 +1,4 @@
 const axios = require('axios');
-const { resolve } = require('bluebird');
-const Promise = require('bluebird');
 
 const timeoutValueDefault = 10000;
 
