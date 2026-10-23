@@ -1,77 +1,54 @@
 
 const api = require("../api");
 const onToken = require("./onToken");
+const onListHandler = require("./onList");
 
 
 function responseDeviceHelp(bot, msg) {
   bot.sendMessage(msg.chat.id, languageCode.AddDeviceHelp);
 }
 
-function onErrorDeviceAdd(bot, msg, deviceId) {
-  bot.sendMessage(msg.chat.id, languageCode.AddDeviceKO + deviceId);
+function onErrorDeviceAdd(bot, chatId, deviceId) {
+  bot.sendMessage(chatId, languageCode.AddDeviceKO + deviceId);
 }
 
-async function onSuccessDeviceAdd(bot, msg, deviceId) {
-  await bot.sendMessage(msg.chat.id, languageCode.AddDeviceOK + deviceId);
-  bot.sendMessage(msg.chat.id, languageCode.DeviceActions);
+async function onSuccessDeviceAdd(bot, chatId, label) {
+  await bot.sendMessage(chatId, languageCode.AddDeviceOK + label);
+  bot.sendMessage(chatId, languageCode.DeviceActions);
 }
 
-
-
-function isValidDevice(pairings, device) {
-  for (var i in pairings) {
-    if (pairings[i].deviceId == device) {
-      return true;
-    }
+// Guarda el cargador elegido, comprobando antes que pertenece al usuario.
+// Se usa desde /device <id> y desde los botones de /list.
+async function selectDevice(bot, chatId, token, deviceId) {
+  const pairings = await onListHandler.getPairingsCached(chatId, token);
+  const devicePaired = pairings && pairings.find((p) => p.deviceId == deviceId);
+  if (!devicePaired) {
+    onErrorDeviceAdd(bot, chatId, deviceId);
+    return false;
   }
-  return false;
-}
-
-function getPairing(pairings, device) {
-  for (var i in pairings) {
-    if (pairings[i].deviceId == device) {
-      return pairings[i];
-    }
+  if (!(await api.updateUserData(chatId, token, devicePaired.deviceId, devicePaired.tag))) {
+    onErrorDeviceAdd(bot, chatId, deviceId);
+    return false;
   }
-  return null;
-}
-
-
-async function addDeviceInformation(msg, token, deviceId, tag) {
-  return await api.updateUserData(msg.chat.id, token, deviceId, tag);
+  await onSuccessDeviceAdd(bot, chatId, onListHandler.deviceLabel(devicePaired));
+  return true;
 }
 
 
 async function onDeviceHandler(bot, msg, match) {
 
-  const deviceId = match[1];
+  const deviceId = match[1] && match[1].trim();
 
+  // Sin ID se muestra la lista de cargadores para elegir con un botón
   if (!deviceId) {
-    responseDeviceHelp(bot, msg);
-    return;
+    return onListHandler(bot, msg);
   }
   var token = await api.getToken(msg.chat.id);
-  if (token.length == 0) {
+  if (!token) {
     onToken.onTokenHandler(bot, msg, [""]);
     return;
   }
-  pairings = await api.getPairings(token)
-  if (pairings == null) {
-    onErrorDeviceAdd(bot, msg, deviceId);
-    return;
-  }
-  if (!isValidDevice(pairings, deviceId)) {
-    onErrorDeviceAdd(bot, msg, deviceId);
-    return;
-  }
-  var devicePaired = getPairing(pairings, deviceId)
-  if (devicePaired != null) {
-    if (!addDeviceInformation(msg, token, devicePaired.deviceId, devicePaired.tag)) {
-      onErrorDeviceAdd(bot, msg, deviceId);
-      return;
-    }
-  }
-  onSuccessDeviceAdd(bot, msg, deviceId)
+  return selectDevice(bot, msg.chat.id, token, deviceId);
 }
 
-module.exports = { onDeviceHandler, responseDeviceHelp }
+module.exports = { onDeviceHandler, responseDeviceHelp, selectDevice }

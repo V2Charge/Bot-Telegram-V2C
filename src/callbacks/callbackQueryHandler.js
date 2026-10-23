@@ -7,8 +7,12 @@ const intensityCallback = require("./intensity")
 const houseIntensityCallback = require("./houseIntensity")
 const stadisticsCallback = require("./stadistics")
 const onToken = require('../handlers/onToken');
+const { onDevicePage } = require('../handlers/onList');
+const { selectDevice } = require('../handlers/onDevice');
 const api = require("../api");
+const logger = require("../logger");
 const ScheduleInfoCallback = require("./ScheduleInfo");
+const { handleControls } = require("./controls");
 
 
 function onError(bot, msg) {
@@ -24,56 +28,72 @@ async function onCallBackQueryHandler(bot, callbackQuery) {
     const msg = callbackQuery.message;
     const callbackqueryId = callbackQuery.id
     try {
+        if (category === "noop") {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            return;
+        }
         var token = await api.getToken(msg.chat.id);
-        if (token.length == 0) {
+        if (!token) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
             onToken.onTokenHandler(bot, msg, [""]);
             return;
         }
+        // Botones de la lista de cargadores: no necesitan un cargador elegido
+        if (category.startsWith("devpage:")) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            await onDevicePage(bot, msg, token, Number(category.slice("devpage:".length)) || 0);
+            return;
+        }
+        if (category.startsWith("dev:")) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
+            await selectDevice(bot, msg.chat.id, token, category.slice("dev:".length));
+            return;
+        }
         var userInfo = await api.getUserInfo(msg.chat.id, token)
-        if (userInfo == null || userInfo.deviceId == "") {
+        if (!userInfo || !userInfo.deviceId) {
+            bot.answerCallbackQuery(callbackqueryId).catch(() => {});
             onUserInfoError(bot, msg);
+            return;
+        }
+        logger.debug("callback", category);
+        if (await handleControls(bot, callbackqueryId, msg, token, userInfo.deviceId, category)) {
             return;
         }
         switch (category) {
             case "LockMode":
-                console.log("LockMode");
                 await lockCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "UnLockMode":
-                console.log("UnLockMode");
                 await unlockCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "ResumeMode":
-                console.log("ResumeMode");
                 await resumeCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "PauseMode":
-                console.log("PauseMode");
                 await pauseCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "StatusInfo":
-                console.log("StatusInfo");
                 await statusCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
+            case "StatusRefresh":
+                await statusCallback(bot, callbackqueryId, msg, token, userInfo.deviceId, true)
+                break;
             case "InstensityInfo":
-                console.log("InstensityInfo");
                 await intensityCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "CurrentHousePower":
-                console.log("CurrentHousePower");
                 await houseIntensityCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "ScheduleInfo":
-                console.log("ScheduleInfo");
                 await ScheduleInfoCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
             case "StadisticsInfo":
-                console.log("StadisticsInfo");
                 await stadisticsCallback(bot, callbackqueryId, msg, token, userInfo.deviceId)
                 break;
         }
     } catch (err) {
-        console.log(err)
+        logger.error("callback", category, err)
+        bot.answerCallbackQuery(callbackqueryId).catch(() => {});
         onError(bot, msg)
     }
 }

@@ -1,13 +1,26 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "V2C-Cloud-Token eingeben",
+    "CmdList": "Wallboxen auflisten",
+    "CmdDevice": "Wallbox auswählen",
+    "CmdSet": "Wallbox steuern",
+    "CmdInfo": "Status und Infos der Wallbox",
+    "CmdHelp": "Hilfe",
+    "TokenHelpUrl": "https://v2charge.com/de/wie-erhalte-ich-meine-token-id-fuer-die-nutzung-der-rest-cloud-api/",
+    "TokenMessageDeleted": "🔒 Ich habe Ihre Nachricht mit dem Token gelöscht, damit er nicht im Chat gespeichert bleibt.",
+
+
     //TOKEN VALUES
     "TokenHelp":"Um Ihren Token-Schlüssel zu erhalten, greifen Sie über Ihr Konto auf den Abschnitt VAPI-Schlüssel“ des V2C Cloud-Webportals zu. \n\n Dann klicken Sie auf die Option “Token generieren“ und es wird eine alphanumerische Referenz angezeigt, die Ihren Token-Schlüssel darstellt. \n\n",
-    "TokenOK": "Token erfolgreich eingefügt !Wählen Sie das e-Ladegerät, das Sie konfigurieren möchten. Geben Sie dazu nach dem Befehl /device, gefolgt von einem Leerzeichen, die deviceId des e-Chargers ein, den Sie konfigurieren möchten. Zum Beispiel \n /gerät ABCDEFG",
+    "TokenOK": "✅ Token erfolgreich gespeichert.",
     "TokenKO": "Der Token-Schlüssel ist ungültig.\n Wenn Sie nicht wissen, wie Sie ihn erhalten, geben Sie /token ein.\n Wenn Sie ihn haben, geben Sie ihn nach dem Befehl /token ein. ",
     "PairedList": "Liste der gekoppelten Geräte",
+    "ChooseDevice": "🔌 Wählen Sie die Wallbox, die Sie verwenden möchten:",
+    "NoDevices": "Mit Ihrem V2C-Cloud-Konto sind keine Wallboxen verknüpft.",
 
     //DEVICEID
-    "AddDeviceHelp": "Sie müssen das hinzuzufügende Gerät in folgendem Format angeben: /device <<deviceId>>\n\n Um die Liste der gekoppelten Geräte zu ermitteln, verwenden Sie den Befehl /list.",
+    "AddDeviceHelp": "Wählen Sie zuerst eine Wallbox mit /list (oder geben Sie /device gefolgt von ihrer ID ein, z. B. /device ABC123).",
     "AddDeviceOK": "Das folgende Gerät wurde erfolgreich gekoppelt: ",
     "DeviceActions": "Um den Status des Ladegeräts anzuzeigen, verwenden Sie den Befehl /info\n\n Um den Status oder die Parameter des Ladegeräts zu ändern, verwenden Sie den Befehl /set ",
     "AddDeviceKO": "Das folgende Gerät konnte nicht verknüpft werden: ",
@@ -21,6 +34,18 @@ module.exports = {
     "InstensityInfo": "⚡Intensitätswert⚡",
     "CurrentHousePower": "🏠⚡ Stromverbrauch ",
     "ScheduleInfo": "⏰ Werte programmieren ",
+    "PowerLabel": "Leistung",
+    "EnergyLabel": "Energie",
+    "TimeLabel": "Dauer",
+    "IntensityLabel": "Stromstärke",
+    "HousePowerLabel": "Hausverbrauch",
+    "SolarLabel": "Solarproduktion",
+    "UpdatedLabel": "Aktualisiert",
+    "Refresh": "🔄 Aktualisieren",
+    "LastSessions": "📊 Letzte Ladevorgänge",
+    "Total": "Gesamt",
+    "NoSessions": "Es sind noch keine Ladevorgänge vorhanden.",
+    "StateUnavailable": "ℹ️ Dieses Gerät meldet keinen Ladezustand.",
     "ChargingInformation" : "🔋Ladeinformationen🔋",
 
     //SET
@@ -28,6 +53,20 @@ module.exports = {
     "ResumeMode": "Lebenslauf",
     "LockMode": "Deaktivieren Sie ",
     "UnLockMode": "Aktivieren Sie ",
+    "IntensityMenu": "🎚️ Stromstärke",
+    "ChooseIntensity": "Wählen Sie die maximale Ladestromstärke:",
+    "IntensitySet": "✅ Stromstärke auf {value} A eingestellt",
+    "SolarMenu": "☀️ Solarmodus",
+    "ChooseSolarMode": "PV-Lademodus und dynamische Leistungsregelung:",
+    "FvMode0": "PV + Mindestleistung",
+    "FvMode1": "Nur PV-Überschuss",
+    "FvMode2": "Maximale Leistung",
+    "SolarModeSet": "✅ Modus geändert: {value}",
+    "DynamicOn": "Dynamisch: an",
+    "DynamicOff": "Dynamisch: aus",
+    "DynamicEnabled": "✅ Dynamische Regelung aktiviert",
+    "DynamicDisabled": "✅ Dynamische Regelung deaktiviert",
+    "Back": "⬅️ Zurück",
 
     //ERROR
     "ErrorOperation": "Der obige Vorgang konnte nicht abgeschlossen werden. Vergewissern Sie sich, dass das Ladegerät korrekt an das Netz angeschlossen ist und einwandfrei funktioniert ",

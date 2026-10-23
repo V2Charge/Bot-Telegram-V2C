@@ -1,14 +1,27 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "Saisir votre token V2C Cloud",
+    "CmdList": "Lister vos chargeurs",
+    "CmdDevice": "Choisir le chargeur à utiliser",
+    "CmdSet": "Contrôler le chargeur",
+    "CmdInfo": "État et informations du chargeur",
+    "CmdHelp": "Aide",
+    "TokenHelpUrl": "https://v2charge.com/fr/comment-puis-je-avoir-mon-identifiant-token-pour-utiliser-l-api-rest-cloud/",
+    "TokenMessageDeleted": "🔒 J'ai supprimé votre message contenant le token pour qu'il ne reste pas dans la conversation.",
+
+
     //TOKEN VALUES
     "TokenHelp": "Pour obtenir votre clé de jeton, rendez-vous dans la rubrique “Clave API” du portail web V2C Cloud depuis votre compte. \n\nEnsuite, cliquez sur l'option “Generar Token” et, une référence alphanumérique s'affichera, cet ID sera votre clé de jeton. \n\n",
 
-    "TokenOK": "Jeton inséré avec succès !\n\nSélectionnez le e-Charger que vous souhaitez configurer. Pour ce faire, entrez après la commande /device suivi d'un espace, le deviceId du e-Charger souhaité.\n\nPar exemple \n/device ABCDEFG ",
+    "TokenOK": "✅ Token enregistré avec succès.",
     "TokenKO": "La clé de jeton n'est pas valide.\nSi vous ne savez pas comment l'obtenir, tapez /token.\nEncaso si vous l'avez, entrez-le après la commande /token",
     "PairedList": "Liste de vos appareils couplés",
+    "ChooseDevice": "🔌 Choisissez le chargeur que vous souhaitez utiliser :",
+    "NoDevices": "Aucun chargeur n'est associé à votre compte V2C Cloud.",
 
     //DEVICEID
-    "AddDeviceHelp": "Vous devez indiquer un ajout d'appareil avec le format suivant à gauche /device <<deviceId>>\n\nPour connaître la liste des appareils couplés utiliser la commande /list",
+    "AddDeviceHelp": "Choisissez d'abord un chargeur avec /list (ou tapez /device suivi de son identifiant, par ex. /device ABC123).",
     "AddDeviceOK": "L'appareil suivant a été associé avec succès :",
     "DeviceActions": "Pour afficher l'état du chargeur, utilisez la commande positive : /info.\n\nPour modifier l'état ou les paramètres du loader utiliser la commande    /set",
     "AddDeviceKO": "L'appareil suivant n'a pas pu être couplé :",
@@ -22,6 +35,18 @@ module.exports = {
     "InstensityInfo": "⚡Valeur d'intensité ⚡",
     "CurrentHousePower": "🏠⚡ Consommation de courant ",
     "ScheduleInfo": "⏰ Valeurs de programmation ",
+    "PowerLabel": "Puissance",
+    "EnergyLabel": "Énergie",
+    "TimeLabel": "Durée",
+    "IntensityLabel": "Intensité",
+    "HousePowerLabel": "Consommation de la maison",
+    "SolarLabel": "Production solaire",
+    "UpdatedLabel": "Mis à jour",
+    "Refresh": "🔄 Actualiser",
+    "LastSessions": "📊 Dernières recharges",
+    "Total": "Total",
+    "NoSessions": "Aucune recharge n'a encore été enregistrée.",
+    "StateUnavailable": "ℹ️ Cet appareil n'indique pas d'état de recharge.",
     "ChargingInformation" : "🔋Informations de charge🔋",
 
     //SET
@@ -29,6 +54,20 @@ module.exports = {
     "ResumeMode": "Reprendre",
     "LockMode": "Désactiver",
     "UnLockMode": "Activer",
+    "IntensityMenu": "🎚️ Intensité",
+    "ChooseIntensity": "Choisissez l'intensité de charge maximale :",
+    "IntensitySet": "✅ Intensité réglée sur {value} A",
+    "SolarMenu": "☀️ Mode solaire",
+    "ChooseSolarMode": "Mode de recharge photovoltaïque et contrôle dynamique de puissance :",
+    "FvMode0": "PV + puissance minimale",
+    "FvMode1": "Surplus PV uniquement",
+    "FvMode2": "Puissance maximale",
+    "SolarModeSet": "✅ Mode modifié : {value}",
+    "DynamicOn": "Dynamique : activer",
+    "DynamicOff": "Dynamique : désactiver",
+    "DynamicEnabled": "✅ Contrôle dynamique activé",
+    "DynamicDisabled": "✅ Contrôle dynamique désactivé",
+    "Back": "⬅️ Retour",
 
     //ERROR
     "ErrorOperation": "L'opération ci-dessus n'a pas pu être effectuée. Assurez-vous que le chargeur est correctement connecté au réseau et que le fonctionnement est correct",

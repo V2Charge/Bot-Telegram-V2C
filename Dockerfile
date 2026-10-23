@@ -1,10 +1,11 @@
-ARG BASE_IMAGE=node:16-alpine
+ARG BASE_IMAGE=node:24-alpine
 FROM ${BASE_IMAGE}
 
-RUN mkdir -p /app
+ENV NODE_ENV=production
 WORKDIR /app
-COPY package*.json /app/
-RUN npm install --omit=dev
+COPY package.json package-lock.json /app/
+RUN npm ci --omit=dev && npm cache clean --force
 COPY ./src/ /app/
-CMD ["node", "index.js"]
 
+USER node
+CMD ["node", "index.js"]

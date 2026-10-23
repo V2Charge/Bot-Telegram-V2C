@@ -1,13 +1,26 @@
 module.exports = {
 
+    //COMMANDS MENU
+    "CmdToken": "Introduce tu token de V2C Cloud",
+    "CmdList": "Lista tus cargadores",
+    "CmdDevice": "Elige el cargador con el que trabajar",
+    "CmdSet": "Controla el cargador",
+    "CmdInfo": "Estado e información del cargador",
+    "CmdHelp": "Ayuda",
+    "TokenHelpUrl": "https://v2charge.com/es/como-obtener-mi-identificador-token-para-usar-la-api-rest-cloud/",
+    "TokenMessageDeleted": "🔒 He borrado tu mensaje con el token para que no quede guardado en el chat.",
+
+
     //TOKEN VALUES
     "TokenHelp": "Para obtener tu clave token, accede a la sección “Clave API” del portal web V2C Cloud desde tu cuenta. \n\nA continuación, pulsa sobre la opción “Generar Token” y, se te desplegará una referencia alfanumérica, ese ID será tu clave token. \n\n",
-    "TokenOK": "Token insertado con éxito !\n\nSelecciona el e-Charger que deseas configurar. Para ello, introduce después del comando /device seguido de un espacio, el deviceId del e-Charger que quieras.\n\nPor ejemplo \n/device ABCDEFG",
+    "TokenOK": "✅ Token guardado correctamente.",
     "TokenKO": "¡La clave de token no es válida .\nSi no sabes cómo obtenerla escriba /token.\nEncaso de contar con ella introdúcela después del comando /token",
     "PairedList": "Lista de sus dispositivos emparejados",
+    "ChooseDevice": "🔌 Elige el cargador con el que quieres trabajar:",
+    "NoDevices": "No tienes cargadores vinculados a tu cuenta de V2C Cloud.",
 
     //DEVICEID
-    "AddDeviceHelp": "Debe de indicar un dispositivo añadir con el siguiente formato /device <<deviceId>>\n\nPara conocer la lista de dispositivos emparejados use el comando /list",
+    "AddDeviceHelp": "Primero elige un cargador con /list (o escribe /device seguido de su ID, por ejemplo /device ABC123).",
     "AddDeviceOK": "Se ha vinculado correctamente el siguiente dispositivo: ",
     "DeviceActions": "Para ver el estado del cargador use el comando /info.\n\nPara modificar el estado o parametros del cargador use el comando /set",
     "AddDeviceKO": "No se ha podido vincular el siguiente dispositivo: ",
@@ -21,6 +34,18 @@ module.exports = {
     "InstensityInfo": "⚡Valor de intensidad⚡",
     "CurrentHousePower": "🏠⚡ Consumo Actual",
     "ScheduleInfo": "⏰ Valores de Programación",
+    "PowerLabel": "Potencia",
+    "EnergyLabel": "Energía",
+    "TimeLabel": "Tiempo",
+    "IntensityLabel": "Intensidad",
+    "HousePowerLabel": "Consumo de la casa",
+    "SolarLabel": "Producción solar",
+    "UpdatedLabel": "Actualizado",
+    "Refresh": "🔄 Actualizar",
+    "LastSessions": "📊 Últimas cargas",
+    "Total": "Total",
+    "NoSessions": "Todavía no hay cargas registradas.",
+    "StateUnavailable": "ℹ️ Este dispositivo no informa del estado de carga.",
     "ChargingInformation" : "🔋Informacíon de carga🔋",
 
     //SET
@@ -28,6 +53,20 @@ module.exports = {
     "ResumeMode": "Reanudar",
     "LockMode": "Deshabilitar",
     "UnLockMode": "Habilitar",
+    "IntensityMenu": "🎚️ Intensidad",
+    "ChooseIntensity": "Elige la intensidad máxima de carga:",
+    "IntensitySet": "✅ Intensidad fijada en {value} A",
+    "SolarMenu": "☀️ Modo solar",
+    "ChooseSolarMode": "Modo de carga fotovoltaica y control dinámico de potencia:",
+    "FvMode0": "FV + mínima potencia",
+    "FvMode1": "Solo excedentes FV",
+    "FvMode2": "Máxima potencia",
+    "SolarModeSet": "✅ Modo cambiado: {value}",
+    "DynamicOn": "Dinámico: activar",
+    "DynamicOff": "Dinámico: desactivar",
+    "DynamicEnabled": "✅ Control dinámico activado",
+    "DynamicDisabled": "✅ Control dinámico desactivado",
+    "Back": "⬅️ Volver",
 
     //ERROR
     "ErrorOperation": "La operacion anterior no se ha podido completar. Asegurate que el cargador este conectado a la red correctamente y que la operación sea correcta",

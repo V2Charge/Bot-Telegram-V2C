@@ -29,7 +29,6 @@ function onSuccess(bot, callbackqueryId, msg, scheduleInfo) {
     }
     bot.answerCallbackQuery(callbackqueryId).then(() => {
 
-        console.log(scheduleInfo);
         var min_start_1 = scheduleInfo.minutestart_00;
         var hour_start_1 = scheduleInfo.hourstart_00;
         var minuteend_1 = scheduleInfo.minuteend_00;
@@ -40,25 +39,24 @@ function onSuccess(bot, callbackqueryId, msg, scheduleInfo) {
         var minuteend_2 = scheduleInfo.minuteend_01;
         var hour_end_2 = scheduleInfo.hourend_01;
         
-        var daysofweek_2 = scheduleInfo.daysofweek_01;
-        var daysofweek_1 = scheduleInfo.daysofweek_00;
+        var daysofweek_2 = String(scheduleInfo.daysofweek_01);
+        var daysofweek_1 = String(scheduleInfo.daysofweek_00);
         var daysOne = "";
         var daysTwo = "";
 
-        if (min_start_1.length < 2) { min_start_1 = "0" + scheduleInfo.minutestart_00; } 
-        if (hour_start_1.length < 2) { hour_start_1 = "0" + scheduleInfo.hourstart_00; }
-        if (minuteend_1.length < 2) { minuteend_1 = "0" + scheduleInfo.minuteend_00; }
-        if (hour_end_1.length < 2) { hour_end_1 = "0" + scheduleInfo.hourend_00; }
+        min_start_1 = String(min_start_1).padStart(2, "0"); 
+        hour_start_1 = String(hour_start_1).padStart(2, "0");
+        minuteend_1 = String(minuteend_1).padStart(2, "0");
+        hour_end_1 = String(hour_end_1).padStart(2, "0");
         
-        if (min_start_2.length < 2) { min_start_2 = "0" + scheduleInfo.minutestart_01; }
-        if (hour_start_2.length < 2) { hour_start_2 = "0" + scheduleInfo.hourstart_01; } 
-        if (minuteend_2.length < 2) { minuteend_2 = "0" + scheduleInfo.minuteend_01; } 
-        if (hour_end_2.length < 2) { hour_end_2 = "0" + scheduleInfo.hourend_01; }
+        min_start_2 = String(min_start_2).padStart(2, "0");
+        hour_start_2 = String(hour_start_2).padStart(2, "0"); 
+        minuteend_2 = String(minuteend_2).padStart(2, "0"); 
+        hour_end_2 = String(hour_end_2).padStart(2, "0");
        
         //Temporizador 1:
         if (daysofweek_1 != "8") {
             for (var i = 0; i < daysofweek_1.length; i++) {
-                console.log(daysofweek_1[i]);
                 if (daysofweek_1[i].includes('1')) { daysOne = daysOne + languageCode.day1; }
                 if (daysofweek_1[i].includes('2')) { daysOne = daysOne + languageCode.day2; }
                 if (daysofweek_1[i].includes('3')) { daysOne = daysOne + languageCode.day3; }
@@ -67,7 +65,6 @@ function onSuccess(bot, callbackqueryId, msg, scheduleInfo) {
                 if (daysofweek_1[i].includes('6')) { daysOne = daysOne + languageCode.day6; }
                 if (daysofweek_1[i].includes('7')) { daysOne = daysOne + languageCode.day7; }
             }
-            console.log(daysOne);
             bot.sendMessage(msg.chat.id, languageCode.Timer1 + languageCode.days + daysOne + "\n" + languageCode.schedule + hour_start_1 + ":" + min_start_1 + languageCode.scheduleOne + hour_end_1 + ":" + minuteend_1 + "\t\t");
         }else {
             //Temporizador1 No programado
@@ -77,7 +74,6 @@ function onSuccess(bot, callbackqueryId, msg, scheduleInfo) {
         //Temporizador2:
         if (daysofweek_2 != "8") {
             for (var i = 0; i < daysofweek_2.length; i++) {
-                console.log(daysofweek_2[i]);
                 if (daysofweek_2[i].includes('1')) { daysTwo = daysTwo + languageCode.day1; }
                 if (daysofweek_2[i].includes('2')) { daysTwo = daysTwo + languageCode.day2; }
                 if (daysofweek_2[i].includes('3')) { daysTwo = daysTwo + languageCode.day3; }

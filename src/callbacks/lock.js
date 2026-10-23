@@ -5,7 +5,7 @@ function onSuccess(bot, callbackqueryId, msg) {
 }
 
 function onError(bot, callbackqueryId, msg) {
-  bot.answerCallbackQuery(callbackqueryId).then(() => bot(msg.chat.id, languageCode.ErrorOperation));
+  bot.answerCallbackQuery(callbackqueryId).then(() => bot.sendMessage(msg.chat.id, languageCode.ErrorOperation));
 }
 
 
