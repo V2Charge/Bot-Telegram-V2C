@@ -46,6 +46,7 @@ module.exports = {
     "LastSessions": "📊 Dernières recharges",
     "Total": "Total",
     "NoSessions": "Aucune recharge n'a encore été enregistrée.",
+    "StatsOwnerOnly": "📊 Les statistiques ne sont disponibles que pour le propriétaire du chargeur. Cet appareil est partagé avec vous en tant qu'invité.",
     "StateUnavailable": "ℹ️ Cet appareil n'indique pas d'état de recharge.",
     "ChargingInformation" : "🔋Informations de charge🔋",
 

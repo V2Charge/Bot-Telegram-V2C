@@ -45,6 +45,7 @@ module.exports = {
     "LastSessions": "📊 Últimos carregamentos",
     "Total": "Total",
     "NoSessions": "Ainda não há carregamentos registados.",
+    "StatsOwnerOnly": "📊 As estatísticas só estão disponíveis para o proprietário do carregador. Este dispositivo foi partilhado consigo como convidado.",
     "StateUnavailable": "ℹ️ Este dispositivo não indica o estado de carregamento.",
     "ChargingInformation" : "🔋Informação da carga🔋",
 

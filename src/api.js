@@ -18,7 +18,7 @@ async function request(client, config) {
     const resp = await client.request(config);
     const remaining = resp.headers && resp.headers['ratelimit-remaining'];
     logger.debug(`${method} ${config.url} -> ${resp.status} (${Date.now() - started} ms)` + (remaining ? ` remaining=${remaining}` : ''));
-    return { ok: true, data: resp.data };
+    return { ok: true, data: resp.data, status: resp.status };
   } catch (err) {
     const status = err.response ? err.response.status : err.code;
     if (status === 429) {
@@ -26,7 +26,7 @@ async function request(client, config) {
     } else {
       logger.warn(`${method} ${config.url} -> ${status} (${Date.now() - started} ms)`);
     }
-    return { ok: false, data: null };
+    return { ok: false, data: null, status };
   }
 }
 
@@ -138,8 +138,10 @@ module.exports = {
     return data(cloud, { method: 'post', url: '/device/currentstatecharge', params: { deviceId }, headers: withKey(token) });
   },
 
+  // Devuelve { ok, data, status }: la API responde 403 a los usuarios
+  // invitados de un cargador compartido
   stadistics(token, deviceId) {
-    return data(cloud, { method: 'get', url: '/stadistic/device', params: { deviceId }, headers: withKey(token) });
+    return request(cloud, { method: 'get', url: '/stadistic/device', params: { deviceId }, headers: withKey(token) });
   },
 };
 
