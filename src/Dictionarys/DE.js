@@ -45,6 +45,7 @@ module.exports = {
     "LastSessions": "📊 Letzte Ladevorgänge",
     "Total": "Gesamt",
     "NoSessions": "Es sind noch keine Ladevorgänge vorhanden.",
+    "StatsOwnerOnly": "📊 Statistiken sind nur für den Eigentümer der Wallbox verfügbar. Dieses Gerät wurde mit Ihnen als Gast geteilt.",
     "StateUnavailable": "ℹ️ Dieses Gerät meldet keinen Ladezustand.",
     "ChargingInformation" : "🔋Ladeinformationen🔋",
 
