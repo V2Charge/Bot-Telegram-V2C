@@ -45,6 +45,7 @@ module.exports = {
     "LastSessions": "📊 Latest charging sessions",
     "Total": "Total",
     "NoSessions": "There are no charging sessions yet.",
+    "StatsOwnerOnly": "📊 Statistics are only available to the charger's owner. This device is shared with you as a guest.",
     "StateUnavailable": "ℹ️ This device doesn't report a charging state.",
 
     //SET
